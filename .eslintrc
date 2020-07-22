@@ -5,6 +5,11 @@
     ],
     "rules": {
         "no-console": "off",
-        "comma-dangle": "off"
+        "comma-dangle": "off",
+        "camelcase": "off",
+        "linebreak-style": [
+            "error",
+            "windows"
+        ]
     }
 }
