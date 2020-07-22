@@ -25,19 +25,22 @@
  *  });
  * ```
  */
-import 'react-hot-loader'
+import 'react-hot-loader';
 import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom'
-import Root from './configureStore'
-import App from './App'
-console.log('Loaded React.');
+import { BrowserRouter } from 'react-router-dom';
+import Root from './configureStore';
+import App from './App';
+
 ReactDOM.render(
-    <Root>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Root>, document.getElementById('root'));
+  <Root>
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Root>,
+  // eslint-disable-next-line no-undef
+  document.getElementById('root')
+);
 
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
