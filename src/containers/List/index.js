@@ -3,8 +3,9 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { useInjectReducer } from '../../Utils/injectReducer'
 import { useInjectSaga } from '../../Utils/injectSaga'
+import { local } from '../../services/localFiles'
 
-import listReducer, { searchReducer, linkReducer } from './reducers'
+import listReducer, { searchReducer, linkReducer, syncLocalReducer } from './reducers'
 import * as actions from './actions'
 import listSaga from './saga'
 
@@ -17,6 +18,7 @@ const List = props => {
     useInjectReducer({ key: 'list', reducer: listReducer })
     useInjectReducer({ key: 'search', reducer: searchReducer })
     useInjectReducer({ key: 'link', reducer: linkReducer })
+    useInjectReducer({ key: 'syncLocal', reducer: syncLocalReducer })
     useInjectSaga({ key: 'listSaga', saga: listSaga })
     const list = useSelector(
         state => state.list
@@ -26,6 +28,8 @@ const List = props => {
     const [isNotLinkedExpanded, setNotLinkedExpanded] = useState(false)
 
     useEffect(() => {
+        const localList = local()
+        dispatch(actions.sync_req(localList))
         dispatch(actions.request())
         // eslint-disable-next-line
     }, [])

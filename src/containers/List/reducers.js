@@ -25,6 +25,32 @@ const listReducer = createReducer(listInitialState, {
 
 export default listReducer
 
+const syncLocalInitialState = {
+    isSyncing: false,
+    localList: null,
+    syncMessage: null,
+    syncError: null,
+}
+
+export const syncLocalReducer = createReducer(syncLocalInitialState, {
+    [downloaded.sync_req]: (state, action) => {
+        state.isSyncing = true
+        state.localList = action.payload
+    },
+    [downloaded.sync_rec]: (state, action) => {
+        state.isSyncing = false
+        state.localList = null
+        state.syncMessage = action.payload
+        state.syncError = false
+    },
+    [downloaded.sync_err]: (state, action) => {
+        state.isSyncing = false
+        state.localList = false
+        state.syncMessage = action.payload
+        state.syncError = true
+    }
+})
+
 const searchInitialState = {
     errorOccured: false,
     errorMessage: null,

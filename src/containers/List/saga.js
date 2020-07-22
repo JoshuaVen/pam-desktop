@@ -3,6 +3,25 @@ import axios from 'axios'
 
 import * as fetchDled from './actions'
 
+function syncLocalList(localList) {
+    return axios.post('http://localhost:8080/api/files/uploadList', localList, {
+        headers: {
+            authorization: localStorage.getItem('token')
+        }
+    }).then(response => ({ response }))
+        .catch(error => ({ error }))
+}
+
+function* startLocalSync(action) {
+    const { error, response } = yield call(syncLocalList, action.payload)
+    if (error) { yield put(fetchDled.sync_err(error)) }
+    else { yield put(fetchDled.sync_rec(response)) }
+}
+
+function* syncLocalWatcher() {
+    yield takeLatest(fetchDled.sync_req, startLocalSync)
+}
+
 function fetchDledAnime() {
     const token = localStorage.getItem('token')
     const config = {
@@ -96,7 +115,8 @@ export default function* saga() {
     yield all([
         fetchingWatcher(),
         animeSearchWatcher(),
-        linkingWatcher()
+        linkingWatcher(),
+        syncLocalWatcher()
     ])
 }
 
