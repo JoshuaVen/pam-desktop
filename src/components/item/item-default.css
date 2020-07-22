@@ -1,0 +1,79 @@
+/* grandparent class: item */
+/* parent class: item-default */
+
+.item-default {
+    display: flex;
+    flex-direction: row;
+    height: 55px;
+    overflow: hidden;
+}
+
+.item-default-premier {
+    display: flex;
+    transition: all 0.2s ease-in-out;
+    padding-left: 20px;
+    align-items: center;
+    width: auto;
+    height: auto;
+    /* background-color: aqua; */
+    overflow: hidden;
+}
+
+.item-default-premier.hide {
+    display: none;
+    opacity: 0;
+    width: 0;
+}
+
+.item .year-span {
+    transition: all 0.2s ease-in-out;
+    color: white;
+}
+
+.item:hover .year-span {
+    color: rgb(0, 0, 0);
+}
+
+.item-default-icon {
+    display: flex;
+    flex-direction: row;
+    padding: 10px 15px;
+    width: 30px;
+    height: 35px;
+    background-color: rgb(0, 255, 34);
+    transition: all 0.2s ease-in-out;
+}
+
+.item-default-icon.hide {
+    width: 0;
+    opacity: 0;
+}
+
+.item .check {
+    transition: all 0.2s ease-in-out;
+    width: 30px;
+    height: 30px;
+    color: rgb(0, 0, 0);
+}
+
+.item .extend {
+    transition: all 0.2s linear;
+    width: 0;
+    height: 0;
+    color: rgb(0, 0, 0);
+}
+
+.item:hover .check {
+    width: 0;
+    height: 0;
+}
+
+.item:hover .item-default-icon {
+    background-color: rgb(0, 0, 0);
+}
+
+.item:hover .extend {
+    width: 30px;
+    height: 30px;
+    color: rgb(0, 255, 34);
+}

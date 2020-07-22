@@ -1,0 +1,56 @@
+:root {
+    --expandable-item-main-color: rgb(255, 74, 74);
+}
+
+.expandable-item {
+    display: flex;
+    flex-direction: row;
+    margin: 5px 10%;
+    border-style: solid;
+    border-color: var(--expandable-item-main-color);
+    border-radius: 10px;
+    transition: all 0.2s ease-in-out;
+}
+
+.expandable-item-icon {
+    display: flex;
+    width: 40px;
+    background-color: var(--expandable-item-main-color);
+    transition: all 0.2s ease-in-out;
+}
+
+.expandable-item-title {
+    padding-left: 10px;
+}
+
+.expandable-item:hover {
+    box-shadow: 0px 5px 5px rgb(22, 37, 37);
+    border-color: rgb(0, 0, 0);
+    background-color: var(--expandable-item-main-color);
+}
+
+.expandable-item:hover .expandable-item-icon {
+    background-color: black;
+}
+
+.expandable-item p {
+    color: rgb(252, 252, 252);
+    transition: all 0.2s ease-in-out;
+}
+
+.expandable-item:hover p {
+    color: black
+}
+
+.expandable-item:hover .link {
+    color: var(--expandable-item-main-color);
+}
+
+.expandable-item-icon .link {
+    transition: all 0.2s ease-in-out;
+    margin: 0 10px;
+    align-self: center;
+    width: 20px;
+    height: 20px;
+    color: rgb(0, 0, 0);
+}

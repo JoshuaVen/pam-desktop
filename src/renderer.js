@@ -25,11 +25,19 @@
  *  });
  * ```
  */
-
+import 'react-hot-loader'
 import './index.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter } from 'react-router-dom'
+import Root from './configureStore'
+import App from './App'
 console.log('Loaded React.');
-ReactDOM.render(<div>Test.</div>, document.getElementById('root'));
+ReactDOM.render(
+    <Root>
+        <BrowserRouter>
+            <App />
+        </BrowserRouter>
+    </Root>, document.getElementById('root'));
 
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
