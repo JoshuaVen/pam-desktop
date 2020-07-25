@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import {
-  call, put, takeLatest, all
+  call, put, takeLatest, all, select
 } from 'redux-saga/effects';
 import axios from 'axios';
 
@@ -55,23 +55,22 @@ function* fetchingWatcher() {
   yield takeLatest(fetchDled.request, fetchDledResults);
 }
 
-function animeSearch(searchURL) {
-  const config = {
-    method: 'get',
-    url: searchURL,
+function animeSearch(searchAnime) {
+  const data = {
+    access_token: localStorage.getItem('access_token'),
+    search: searchAnime
+  };
+  return axios.post('http://localhost:8080/api/files/search', data, {
     headers: {
       authorization: localStorage.getItem('token')
     }
-  };
-  return axios(config)
-    .then((response) => ({ response }))
+  }).then((response) => ({ response }))
     .catch((error) => ({ error }));
 }
 
 function* fetchAnimeResult(search) {
-  console.log(search);
-  const searchURL = `http://localhost:8080/api/files/search?anime=${search.payload}`;
-  const { response, error } = yield call(animeSearch, searchURL);
+  const searchAnime = search.payload;
+  const { response, error } = yield call(animeSearch, searchAnime);
 
   if (response) {
     yield put(fetchDled.search_rec(response));

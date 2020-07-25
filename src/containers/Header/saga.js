@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
-import { takeLatest, call, put, all } from 'redux-saga/effects';
+import {
+  takeLatest, call, put, all
+} from 'redux-saga/effects';
 import { parse } from 'url';
 import axios from 'axios';
 import * as actions from './actions';
@@ -22,7 +24,9 @@ function* malAuthRequest() {
   if (error) {
     yield put(actions.mal_auth_post_err(error));
   } else {
-    // yield call([localStorage, localStorage.clear], 'codeVerifier');
+    yield call([localStorage, localStorage.removeItem], 'codeVerifier');
+    yield call([localStorage, localStorage.setItem], 'access_token', response.data.access_token);
+    yield call([localStorage, localStorage.setItem], 'refresh_token', response.data.refresh_token);
     yield put(actions.mal_auth_post_res(response));
   }
 }

@@ -1,10 +1,14 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-param-reassign */
 import { createReducer } from '@reduxjs/toolkit';
 import * as actions from './actions';
 
 const malAuthInitialState = {
   initialized: false,
-  accessToken: null,
+  accessToken: {
+    access_token: localStorage.getItem('access_token'),
+    refresh_token: localStorage.getItem('refresh_token')
+  },
   errored: null,
 };
 

@@ -1,13 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
 const { default: installExtension, REDUX_DEVTOOLS } = require('electron-devtools-installer');
-const { app, BrowserWindow, ipcMain } = require('electron');
+const {
+  app, BrowserWindow, ipcMain, session
+} = require('electron');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
   app.quit();
 }
 
-app.setAsDefaultProtocolClient('my-app');
+const filter = {
+  urls: ['https://api.myanimelist.net/*']
+};
 
 let mainWindow;
 
@@ -23,6 +27,7 @@ const createWindow = () => {
 
   // and load the index.html of the app.
   // console.log(MAIN_WINDOW_WEBPACK_ENTRY);
+  // eslint-disable-next-line no-undef
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY);
   // Open the DevTools.
   // mainWindow.webContents.openDevTools();

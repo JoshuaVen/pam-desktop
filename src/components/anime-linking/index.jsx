@@ -15,9 +15,9 @@ const Results = (props) => {
   if (search.errorOccured) {
     return <div>An error occured during searching of the anime!</div>;
   }
-  return search.searchRes.map(
+  return search.searchRes.data.data.map(
     // eslint-disable-next-line react/no-array-index-key
-    (res, index) => <AnimeCard key={index} anime={res} initiateLinking={handleLinking} />
+    (anime, index) => <AnimeCard key={index} anime={anime.node} initiateLinking={handleLinking} />
   );
 };
 

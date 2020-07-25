@@ -38,7 +38,7 @@ const Card = (props) => {
         )
         : (
           <div>
-            <img className="animeImage" src={anime.image_url} alt="Anime Poster" />
+            <img className="animeImage" src={anime.main_picture.medium} alt="Anime Poster" />
             <p className="animeTitle">{anime.title}</p>
           </div>
         )}
@@ -48,7 +48,10 @@ const Card = (props) => {
 
 Card.propTypes = {
   anime: PropTypes.shape({
-    image_url: PropTypes.string.isRequired,
+    main_picture: PropTypes.shape({
+      large: PropTypes.string.isRequired,
+      medium: PropTypes.string.isRequired
+    }),
     title: PropTypes.string.isRequired
   }).isRequired,
   initiateLinking: PropTypes.func.isRequired
