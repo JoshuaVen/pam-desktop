@@ -69,6 +69,7 @@ function animeSearch(searchURL) {
 }
 
 function* fetchAnimeResult(search) {
+  console.log(search);
   const searchURL = `http://localhost:8080/api/files/search?anime=${search.payload}`;
   const { response, error } = yield call(animeSearch, searchURL);
 

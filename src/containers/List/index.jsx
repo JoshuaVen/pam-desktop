@@ -8,13 +8,16 @@ import { useInjectSaga } from '../../Utils/injectSaga';
 import { local } from '../../services/localFiles';
 
 import listReducer, { searchReducer, linkReducer, syncLocalReducer } from './reducers';
+import loadable from '../../Utils/loadable';
 import * as actions from './actions';
 import listSaga from './saga';
 
 import Item from '../../components/item';
 import ExpandableItem from '../../components/expandable-item';
-
 import './List.css';
+import LoadingComp from '../../components/loading-component/Loading';
+
+const AnimeLinking = loadable(() => import('../../components/anime-linking'), { fallback: <LoadingComp /> });
 
 const List = (props) => {
   const { history } = props;
@@ -25,6 +28,9 @@ const List = (props) => {
   useInjectSaga({ key: 'listSaga', saga: listSaga });
   const list = useSelector(
     (state) => state.list
+  );
+  const link = useSelector(
+    (state) => state.link
   );
   const dispatch = useDispatch();
   const [isLinkedExpanded, setLinkedExpanded] = useState(true);
@@ -45,6 +51,8 @@ const List = (props) => {
   };
 
   if (!list) return null;
+
+  if (link && link.isLinking) return <AnimeLinking />;
 
   return (
     <div className="list-main">

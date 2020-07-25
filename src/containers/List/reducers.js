@@ -70,6 +70,7 @@ export const searchReducer = createReducer(searchInitialState, {
     state.searchRes = action.payload.data;
   },
   [downloaded.search_err]: (state, action) => {
+    state.loading = false;
     state.errorOccured = true;
     state.errorMessage = action.payload;
   }

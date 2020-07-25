@@ -1,0 +1,37 @@
+.downloaded-anime {
+    display: flex;
+    align-self: center;
+    align-content: center;
+    justify-content: center;
+}
+
+.downloaded-anime h1 {
+    color: rgb(255, 255, 255);
+}
+
+.content {
+    overflow: auto;
+    margin-top: 10px;
+    padding: 0 70px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    /* background-color: aqua; */
+}
+
+.alert-box {
+    border-radius: 5px;
+    padding: 20px 0;
+    margin: 10px 20px;
+    background-color: rgb(117, 255, 126);
+}
+
+.alert-icon {
+    color: #057701;
+    width: 60px;
+    height: 60px;
+}
+
+.alert-box p {
+    color: black;
+}

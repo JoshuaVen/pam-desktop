@@ -8,16 +8,17 @@ const Signin = loadable(() => import('./services/Signin'),
   { fallback: <div>Loading...</div> });
 const Signout = loadable(() => import('./services/Signout'));
 const Home = loadable(() => import('./containers/HomePage'));
+const Mal = loadable(() => import('./services/Mal'));
 
 function App() {
   return (
     <div>
       <Header />
+      <Route path="/mal" exact component={Mal} />
       <Route path="/signin" exact component={Signin} />
       <Route path="/signout" exact component={Signout} />
       <Route path="/" exact component={Home} />
     </div>
-
   );
 }
 

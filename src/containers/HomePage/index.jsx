@@ -10,10 +10,6 @@ import Header from '../../components/header';
 import LoadingComp from '../../components/loading-component/Loading';
 
 const List = loadable(() => import('../List'), { fallback: <LoadingComp /> });
-// const AnimeLinking = loadable(() => import(
-//     /* webpackPrefetch: true */'Client/Components/anime-linking'),
-//     { fallback: <LoadingComp /> }
-// )
 
 const pages = [
   { title: 'Anime', description: 'All anime displayed that are added by the user' },
@@ -30,9 +26,7 @@ const Home = (props) => {
   const home = useSelector(
     (state) => state.home
   );
-  // const isLinking = useSelector(
-  // state => state.link.isLinking
-  // )
+  if (!home) return null;
 
   return (
     <div className="home">
@@ -41,8 +35,7 @@ const Home = (props) => {
 
                 {this.props.form.isPopped ? <PopupForm /> : null}
                  */}
-      {/* {isLinking ? <AnimeLinking /> : null} */}
-      {home ? <Header pages={pages} currentActive={home.currentActive} /> : <div>loading...</div>}
+      <Header pages={pages} currentActive={home.currentActive} />
       <List history={history} />
     </div>
   );

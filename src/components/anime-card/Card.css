@@ -1,0 +1,112 @@
+:root {
+    --confirmation-confirm-color: rgb(0, 141, 19);
+    --confirmation-confirm-color-hover: rgb(0, 255, 0);
+    --confirmation-cancel-color: rgb(150, 33, 33);
+    --confirmation-cancel-color-hover: rgb(255, 0, 0);
+}
+
+.animeImage {
+    width: 150px;
+    height: 200px;
+    align-self: center;
+}
+
+.anime-card {
+    transition-duration: 0.2s;
+    border-radius: 5px;
+    box-shadow: 0px 2px 10px rgb(0, 0, 0);
+    margin: 10px;
+    padding: 5px;
+    min-width: 200px;
+    width: 160px;
+    height: 280px;
+    /* display: flex; */
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    background-color: #0e0c8d;
+}
+
+.anime-card:hover {
+    box-shadow: 0px 2px 5px rgb(0, 0, 0);
+
+}
+
+.confirmation {
+    height: 250px;
+    display: flex;
+    flex-direction: row;
+    /* align-content: center; */
+    justify-content: center;
+    background-color: rgb(240, 240, 240);
+}
+
+.confirmation .icon {
+    width: 70px;
+    height: 70px;
+    margin-left: 15px;
+    margin-right: 15px;
+    transition: all ease 0.1s;
+    background-color: black;
+    border-radius: 10px;
+}
+
+.confirm-div,
+.cancel-div {
+    transition: padding-top ease 0.1s;
+    padding-top: 45%;
+}
+
+.confirm-div:hover,
+.cancel-div:hover {
+    padding-top: 44%;
+}
+
+.confirm-div:active,
+.cancel-div:active {
+    padding-top: 45%;
+}
+
+.confirm-div .icon {
+    background-color: var(--confirmation-confirm-color-hover);
+}
+
+.cancel-div .icon {
+    background-color: var(--confirmation-cancel-color-hover);
+}
+
+.confirm-div:hover .icon {
+    box-shadow: 0 2px 5px black;
+    background-color: var(--confirmation-confirm-color);
+}
+
+.cancel-div:hover .icon {
+    box-shadow: 0 2px 5px black;
+    background-color: var(--confirmation-cancel-color);
+}
+
+.confirm-div:active .icon {
+    box-shadow: 0 2px 3px black;
+    background-color: var(--confirmation-confirm-color);
+}
+
+.cancel-div:active .icon {
+    box-shadow: 0 2px 3px black;
+    background-color: var(--confirmation-cancel-color);
+}
+
+.confirm-div .confirm {
+    color: var(--confirmation-confirm-color);
+}
+
+.cancel-div .cancel {
+    color: var(--confirmation-cancel-color);
+}
+
+.confirm-div:hover .confirm {
+    color: var(--confirmation-confirm-color-hover);
+}
+
+.cancel-div:hover .cancel {
+    color: var(--confirmation-cancel-color-hover);
+}
