@@ -85,8 +85,9 @@ function* animeSearchWatcher() {
 
 function linkAttempt(item) {
   const dataForPosting = {
-    ...item.linkingItem,
-    searchTitle: item.referenceItem
+    id: item.tobeInserted.id,
+    searchTitle: item.searchTitle,
+    access_token: localStorage.getItem('access_token')
   };
   const linkingURL = 'http://localhost:8080/api/files/link';
   const config = {

@@ -82,7 +82,7 @@ const linkInitialState = {
   toBeLinked: {},
   message: null,
   linkingStarted: false,
-  linkingSuccess: false,
+  linkingSuccess: null,
 };
 
 export const linkReducer = createReducer(linkInitialState, {

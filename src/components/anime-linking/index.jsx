@@ -21,18 +21,13 @@ const Results = (props) => {
   );
 };
 
-const Alert = (linkMessage) => {
-  if (linkMessage.status === 200) {
-    return (
-      <div className="alert-box">
-        <FaCheckCircle className="alert-icon" />
-        <h2 className="alert-title">Linking Successful</h2>
-        <p>The selected anime is linked with the downloaded anime</p>
-      </div>
-    );
-  }
-  return null;
-};
+const Alert = () => (
+  <div className="alert-box">
+    <FaCheckCircle className="alert-icon" />
+    <h2 className="alert-title">Linking Successful</h2>
+    <p>The selected anime is linked with the downloaded anime</p>
+  </div>
+);
 
 const AnimeLinking = () => {
   const link = useSelector((state) => state.link);
@@ -40,7 +35,7 @@ const AnimeLinking = () => {
   const dispatch = useDispatch();
 
   const handleLinking = (tobeInserted) => {
-    dispatch(link_init(tobeInserted, search.searchTitle));
+    dispatch(link_init({ tobeInserted, searchTitle: search.searchTitle }));
   };
   const escFunc = (event) => {
     if (event.keyCode === 27) {
@@ -66,8 +61,8 @@ const AnimeLinking = () => {
         <div className="downloaded-anime">
           <h1>{search.searchTitle}</h1>
         </div>
-        {link.linkMessage
-          ? <Alert linkMessage={link.linkMessage} />
+        {link.linkingSuccess
+          ? <Alert linkMessage={link.message} />
           : (
             <div className="content">
               {search.loading

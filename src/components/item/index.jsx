@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -57,8 +58,7 @@ const Item = (props) => {
         </div>
         <div className={`item-default-premier${isOpen ? ' hide' : ''}`}>
           <span className="year-span">
-            Year Premiered:
-            {anime.premier_year}
+            Year Premiered: {anime.premier_year}
           </span>
         </div>
       </div>
