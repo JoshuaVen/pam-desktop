@@ -18,11 +18,13 @@
 }
 
 .item-title {
-    display: grid;
+    display: flex;
     margin-top: 5px;
     padding: 0 5px;
     height: 60px;
-    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
     width: auto;
     transition: all 0.2s ease-in-out;
 }

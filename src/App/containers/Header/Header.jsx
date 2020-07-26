@@ -1,3 +1,4 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-undef */
 import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,7 +26,6 @@ const Header = React.memo(() => {
   const handleClick = () => {
     const { code_verifier } = pkceChallenge(128);
     const code_challenge = code_verifier;
-    console.log(code_challenge === code_verifier);
     localStorage.setItem('codeVerifier', code_verifier);
     ipcRenderer.invoke('authenticate', code_challenge);
   };
@@ -47,7 +47,7 @@ const Header = React.memo(() => {
       <Link className="PAManager" to="/">PAManager</Link>
       <div className="connect">
         {auth.accessToken
-          ? (<div>Connected!!!</div>)
+          ? (<div className="mal-indicator"><span className="span indicator">Connected</span></div>)
           : (<button type="button" onClick={handleClick}>Connect To MAL</button>)}
         {token
           ? (<Link to="/signout">Sign Out</Link>)

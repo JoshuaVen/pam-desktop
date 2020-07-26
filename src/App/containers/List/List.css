@@ -9,6 +9,7 @@
 }
 
 .grouped .grouped-span {
+    margin-left: 10px;
     align-self: center;
     /* position: relative;
     top: 3px;

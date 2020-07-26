@@ -6,6 +6,21 @@
     background-color: aquamarine;
 }
 
+.mal-indicator {
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(43, 255, 0);
+    align-content: center;
+    justify-content: center;
+    padding: 0 5px;
+}
+
+.mal-indicator .span.indicator {
+    color: rgb(0, 0, 0);
+    font-size: 10pt;
+    font-weight: 500;
+}
+
 .header-body a {
     align-self: center;
     height: 21px;
