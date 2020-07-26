@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
-import { takeLatest, call, put } from 'redux-saga/effects';
+import {
+  takeLatest, call, put, take, cancel
+} from 'redux-saga/effects';
 import axios from 'axios';
 
 import * as animeDetails from './actions';
@@ -16,12 +18,13 @@ function details(mal_id) {
 function* animeDetailsReq(action) {
   const { error, response } = yield call(details, action.payload);
   if (error) {
-    yield put(animeDetails.err(error));
-  } else {
-    yield put(animeDetails.res(response.data));
+    return yield put(animeDetails.err(error));
   }
+  return yield put(animeDetails.res(response.data));
 }
 
 export default function* animeDetailsWatcher() {
-  yield takeLatest(animeDetails.req, animeDetailsReq);
+  const detailsWatcher = yield takeLatest(animeDetails.req, animeDetailsReq);
+  yield take([animeDetails.res, animeDetails.err]);
+  yield cancel(detailsWatcher);
 }

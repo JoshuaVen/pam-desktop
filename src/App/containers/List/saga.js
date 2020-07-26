@@ -1,9 +1,9 @@
 /* eslint-disable no-undef */
 import {
-  call, put, takeLatest, fork
+  call, put, takeLatest, fork, cancel, take
 } from 'redux-saga/effects';
 import axios from 'axios';
-import * as fetchDled from './actions';
+import * as actions from './actions';
 import link from './sagaLink';
 import search from './sagaSearch';
 import local from './sagaLocal';
@@ -25,24 +25,29 @@ function fetchDledAnime() {
 function* fetchDledResults() {
   const { error, response } = yield call(fetchDledAnime);
   if (error) {
-    yield put(fetchDled.failed(error));
-  } else {
-    yield put(fetchDled.success(response));
+    yield put(actions.failed(error));
   }
+  yield put(actions.success(response));
 }
 
 function* fetchingWatcher() {
-  yield takeLatest(fetchDled.request, fetchDledResults);
+  yield takeLatest(actions.request, fetchDledResults);
 }
 
 function* searchThenLink() {
-  yield* link();
-  yield* search();
+  const linkWatcher = yield* link();
+  const searchWatcher = yield* search();
+  yield take([actions.link_reset, actions.link_fail, actions.link_succ]);
+  yield cancel(searchWatcher);
+  yield cancel(linkWatcher);
 }
 
 function* syncThenFetch() {
-  yield* local();
-  yield* fetchingWatcher();
+  const localWatcher = yield* local();
+  const fetchWatcher = yield* fetchingWatcher();
+  yield take([actions.failed, actions.success]);
+  yield cancel(localWatcher);
+  yield cancel(fetchWatcher);
 }
 
 export default function* saga() {

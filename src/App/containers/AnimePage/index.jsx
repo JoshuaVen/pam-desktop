@@ -27,6 +27,7 @@ const Anime = () => {
   const animeDetails = useSelector((state) => state.anime);
   if (!animeDetails) return null;
   if (animeDetails.isRequesting) return null;
+  if (!animeDetails.details) return null;
   const { details } = animeDetails;
   return (
     <div>

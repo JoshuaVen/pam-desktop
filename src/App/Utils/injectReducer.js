@@ -38,5 +38,5 @@ export const useInjectReducer = ({ key, reducer }) => {
       reducerManager.remove(key);
       context.store.replaceReducer(reducerManager.reduce);
     };
-  }, []);
+  }, [key]);
 };
