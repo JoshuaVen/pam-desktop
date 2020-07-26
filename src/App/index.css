@@ -10,6 +10,11 @@ body {
   background-color: rgb(44, 0, 85);
 }
 
+@font-face {
+  font-family: JapFont;
+  src: url('./fonts/SourceHanSerif-Regular.otf')
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;

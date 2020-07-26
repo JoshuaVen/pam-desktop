@@ -9,11 +9,13 @@ const Signin = loadable(() => import('./services/Signin'),
 const Signout = loadable(() => import('./services/Signout'));
 const Home = loadable(() => import('./containers/HomePage'));
 const Mal = loadable(() => import('./services/Mal'));
+const AnimePage = loadable(() => import('./containers/AnimePage'));
 
 function App() {
   return (
     <div>
       <Header />
+      <Route path="/anime" exact component={AnimePage} />
       <Route path="/mal" exact component={Mal} />
       <Route path="/signin" exact component={Signin} />
       <Route path="/signout" exact component={Signout} />

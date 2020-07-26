@@ -1,0 +1,48 @@
+.title {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(11, 0, 75);
+    justify-content: left;
+    text-align: left;
+}
+
+.title .title-jp .title-span.jp {
+    font-size: 30pt;
+    font-family: JapFont;
+    color: white;
+}
+
+.title .title-en .title-span.en {
+    color: white;
+    font-size: 9pt;
+}
+
+.title .box-genres {
+    margin-top: 5px;
+    height: 20px;
+    background-color: aquamarine;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.title .box-genres .genre-span {
+    font-size: 10pt;
+    margin: 0 5px;
+}
+
+.details {
+    display: flex;
+    flex-direction: row;
+}
+
+.details .summary {
+    margin: 5px 5px;
+}
+
+.details .synopsis {
+    margin: 5px 5px;
+}
