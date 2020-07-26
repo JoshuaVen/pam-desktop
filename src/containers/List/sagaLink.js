@@ -1,10 +1,10 @@
+/* eslint-disable no-undef */
 import {
-  call, put, takeLatest, all, select
+  call, put, takeLatest,
 } from 'redux-saga/effects';
 import axios from 'axios';
 
 import * as actions from './actions';
-
 
 function linkAttempt(item) {
   const dataForPosting = {
