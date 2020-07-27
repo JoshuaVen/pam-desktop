@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 import {
-  takeLatest, call, put, take, cancel
+  call, put, take,
 } from 'redux-saga/effects';
 import axios from 'axios';
 
@@ -11,20 +11,19 @@ function details(mal_id) {
     headers: {
       authorization: localStorage.getItem('token')
     }
-  }).then((response) => ({ response }))
-    .catch((error) => ({ error }));
+  });
 }
 
-function* animeDetailsReq(action) {
-  const { error, response } = yield call(details, action.payload);
-  if (error) {
-    return yield put(animeDetails.err(error));
+function* animeDetailsReq(mal_id) {
+  try {
+    const response = yield call(details, mal_id);
+    yield put(animeDetails.res(response.data));
+  } catch (error) {
+    yield put(animeDetails.err(err));
   }
-  return yield put(animeDetails.res(response.data));
 }
 
 export default function* animeDetailsWatcher() {
-  const detailsWatcher = yield takeLatest(animeDetails.req, animeDetailsReq);
-  yield take([animeDetails.res, animeDetails.err]);
-  yield cancel(detailsWatcher);
+  const { payload } = yield take(animeDetails.req);
+  yield animeDetailsReq(payload);
 }

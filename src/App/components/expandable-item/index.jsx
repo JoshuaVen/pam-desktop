@@ -2,14 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { FaLink } from 'react-icons/fa';
-import { search_req, link_togg } from '../../containers/List/actions';
+import { link_togg, link_title } from '../../containers/List/actions';
 import './ExpandableItem.css';
 
 const ExpandableItem = (props) => {
   const { anime } = props;
   const dispatch = useDispatch();
   const handleClick = () => {
-    dispatch(search_req(anime.title));
+    dispatch(link_title(anime.title));
     dispatch(link_togg());
   };
   return (

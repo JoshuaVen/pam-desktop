@@ -1,9 +1,8 @@
 /* eslint-disable no-undef */
 import {
-  call, put, takeLatest,
+  call, put, takeLatest, take, cancel
 } from 'redux-saga/effects';
 import axios from 'axios';
-
 import * as actions from './actions';
 
 function linkAttempt(item) {
@@ -36,5 +35,7 @@ function* fetchLinkResults(action) {
 }
 
 export default function* linkingWatcher() {
-  yield takeLatest(actions.link_init, fetchLinkResults);
+  const linkWatcher = yield takeLatest(actions.link_init, fetchLinkResults);
+  yield take([actions.link_fail, actions.link_succ]);
+  yield cancel(linkWatcher);
 }

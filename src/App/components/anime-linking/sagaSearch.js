@@ -1,9 +1,9 @@
+/* eslint-disable no-undef */
 import {
-  call, put, takeLatest
+  call, put, takeLatest, take, cancel
 } from 'redux-saga/effects';
 import axios from 'axios';
 import * as actions from './actions';
-
 
 function animeSearch(searchAnime) {
   const data = {
@@ -14,21 +14,19 @@ function animeSearch(searchAnime) {
     headers: {
       authorization: localStorage.getItem('token')
     }
-  }).then((response) => ({ response }))
-    .catch((error) => ({ error }));
+  });
 }
 
 function* fetchAnimeResult(search) {
-  const searchAnime = search.payload;
-  const { response, error } = yield call(animeSearch, searchAnime);
-
-  if (response) {
+  try {
+    const response = yield call(animeSearch, search);
     yield put(actions.search_rec(response));
-  } else {
+  } catch (error) {
     yield put(actions.search_err(error));
   }
 }
 
 export default function* animeSearchWatcher() {
-  yield takeLatest(actions.search_req, fetchAnimeResult);
+  const { payload } = yield take(actions.search_req);
+  yield fetchAnimeResult(payload);
 }
