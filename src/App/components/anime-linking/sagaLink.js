@@ -1,8 +1,9 @@
 /* eslint-disable no-undef */
 import {
-  call, put, takeLatest, take, cancel
+  call, put, take, cancel
 } from 'redux-saga/effects';
 import axios from 'axios';
+import listSaga from '../../containers/List/saga';
 import * as actions from './actions';
 
 function linkAttempt(item) {
@@ -20,22 +21,21 @@ function linkAttempt(item) {
       authorization: localStorage.getItem('token')
     }
   };
-  return axios(config)
-    .then((response) => ({ response }))
-    .catch((error) => ({ error }));
+  return axios(config);
 }
 
-function* fetchLinkResults(action) {
-  const { response, error } = yield call(linkAttempt, action.payload);
-  if (response) {
-    yield put(actions.link_succ(response));
-  } else {
+function* fetchLinkResults(item) {
+  try {
+    const response = yield call(linkAttempt, item);
+    yield put(actions.link_succ(response.data));
+  } catch (error) {
+    console.log(error);
     yield put(actions.link_fail(error));
   }
 }
 
 export default function* linkingWatcher() {
-  const linkWatcher = yield takeLatest(actions.link_init, fetchLinkResults);
-  yield take([actions.link_fail, actions.link_succ]);
-  yield cancel(linkWatcher);
+  const { payload } = yield take(actions.link_init);
+  yield* fetchLinkResults(payload);
+  yield* listSaga();
 }

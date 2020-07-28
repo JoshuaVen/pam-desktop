@@ -8,8 +8,9 @@ import Loading from '../../Assets/loading.svg';
 import AnimeCard from '../anime-card/Card';
 import { useInjectReducer } from '../../Utils/injectReducer';
 import { useInjectSaga } from '../../Utils/injectSaga';
-import local from '../../services/localFiles';
+import { local } from '../../services/localFiles';
 import linkSaga from './saga';
+import listSaga from '../../containers/List/saga';
 import { linkReducer, searchReducer } from './reducers';
 import {
   link_init, link_reset, search_req
@@ -17,19 +18,18 @@ import {
 import { sync_req, link_togg } from '../../containers/List/actions';
 
 const Results = (props) => {
-  const { search, handleLinking, dispatch } = props;
+  const { search, handleLinking, } = props;
   if (search.errorOccured) {
-    return <div>An error occured during searching of the anime!</div>;
+    return <div>An error occured during searching</div>;
   }
   try {
-    console.log('Sync the results in background');
-    const localList = local();
-    dispatch(sync_req(localList));
-    return search.searchRes.data.data.map(
+    const searchResults = search.searchRes.data.data.map(
       // eslint-disable-next-line react/no-array-index-key
       (anime, index) => <AnimeCard key={index} anime={anime.node} initiateLinking={handleLinking} />
     );
+    return searchResults;
   } catch (error) {
+    console.log(error);
     return (<div>Error on anime card</div>);
   }
 };
@@ -56,8 +56,8 @@ const AnimeLinking = () => {
   };
   const escFunc = (event) => {
     if (event.keyCode === 27) {
-      dispatch(link_togg());
       dispatch(link_reset());
+      dispatch(link_togg());
       // dispatch(request());
     }
   };
@@ -68,6 +68,8 @@ const AnimeLinking = () => {
     const { title } = linkToggler;
     dispatch(search_req(title));
     return () => {
+      const localList = local();
+      dispatch(sync_req(localList));
       // eslint-disable-next-line no-undef
       document.removeEventListener('keydown', escFunc);
     };
@@ -82,7 +84,7 @@ const AnimeLinking = () => {
             <h1>{search.searchTitle}</h1>
           </div>
           {link.linkingSuccess
-            ? <Alert linkMessage={link.message} />
+            ? <Alert linkMessage={link.message} dispatch={dispatch} />
             : (
               <div className="content">
                 {search.loading

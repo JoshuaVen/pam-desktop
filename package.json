@@ -9,7 +9,9 @@
     "package": "electron-forge package",
     "make": "electron-forge make",
     "publish": "electron-forge publish",
-    "lint": "echo \"No linting configured\""
+    "lint": "echo \"No linting configured\"",
+    "test": "mocha --no-warnings --require @babel/register --require ./src/App/test/helpers.js --require ./src/App/test/dom.js --require ignore-styles 'src/App/**/*.test.jsx'",
+    "test:watch": "yarn run test -- --watch"
   },
   "keywords": [],
   "author": {
@@ -64,6 +66,7 @@
   },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.10.5",
+    "@babel/register": "^7.10.5",
     "@electron-forge/cli": "6.0.0-beta.52",
     "@electron-forge/maker-deb": "6.0.0-beta.52",
     "@electron-forge/maker-rpm": "6.0.0-beta.52",
@@ -73,15 +76,21 @@
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@svgr/webpack": "^5.4.0",
     "babel-eslint": "^10.1.0",
+    "chai": "^4.2.0",
     "css-loader": "^3.0.0",
     "electron": "9.1.1",
     "electron-devtools-installer": "^3.1.1",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.2",
     "eslint": "^7.5.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-react-hooks": "^4.0.8",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^16.3.0",
+    "mocha": "^8.0.1",
     "node-loader": "^0.6.0",
     "redux-devtools-extension": "^2.13.8",
     "style-loader": "^0.23.1"

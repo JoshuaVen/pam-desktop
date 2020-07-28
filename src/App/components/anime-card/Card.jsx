@@ -10,40 +10,46 @@ const Card = (props) => {
   const toggleConfirmation = () => {
     setConfirmation(!isConfirming);
   };
-
-  return (
-    <div
-      className="anime-card"
-      onClick={toggleConfirmation}
-      role="presentation"
-    >
-      {isConfirming
-        ? (
-          <div className="confirmation">
-            <div
-              className="confirm-div"
-              onClick={() => initiateLinking(anime)}
-              role="presentation"
-            >
-              <FaCheck className="icon confirm" />
+  try {
+    return (
+      <div
+        className="anime-card"
+        onClick={toggleConfirmation}
+        role="presentation"
+      >
+        {isConfirming
+          ? (
+            <div className="confirmation">
+              <div
+                className="confirm-div"
+                onClick={() => {
+                  initiateLinking(anime);
+                }}
+                role="presentation"
+              >
+                <FaCheck className="icon confirm" />
+              </div>
+              <div
+                className="cancel-div"
+                onClick={toggleConfirmation}
+                role="presentation"
+              >
+                <FaTimes className="icon cancel" />
+              </div>
             </div>
-            <div
-              className="cancel-div"
-              onClick={toggleConfirmation}
-              role="presentation"
-            >
-              <FaTimes className="icon cancel" />
+          )
+          : (
+            <div>
+              <img className="animeImage" src={anime.main_picture.medium} alt="Anime Poster" />
+              <p className="animeTitle">{anime.title}</p>
             </div>
-          </div>
-        )
-        : (
-          <div>
-            <img className="animeImage" src={anime.main_picture.medium} alt="Anime Poster" />
-            <p className="animeTitle">{anime.title}</p>
-          </div>
-        )}
-    </div>
-  );
+          )}
+      </div>
+    );
+  } catch (error) {
+    console.log(error);
+    return (<div>An error occured!</div>);
+  }
 };
 
 Card.propTypes = {

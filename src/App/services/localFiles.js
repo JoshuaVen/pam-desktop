@@ -1,6 +1,12 @@
+/* eslint-disable import/prefer-default-export */
 import fs from 'fs';
 
-// eslint-disable-next-line import/prefer-default-export
+/**
+ *
+ * Returns a list of anime directories currently found
+ * in the local machine.
+ *
+ */
 export const local = () => {
   const source = 'E:/';
   // eslint-disable-next-line prefer-const

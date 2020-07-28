@@ -4,5 +4,5 @@ import search from './sagaSearch';
 
 export default function* saga() {
   yield fork(search);
-  // yield fork(link);
+  yield fork(link);
 }
