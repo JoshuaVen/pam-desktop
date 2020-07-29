@@ -7,7 +7,7 @@
     right: 0;
     bottom: 0;
     margin: auto;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(134, 227, 255);
 }
 
 .popup-inner {
@@ -18,11 +18,11 @@
     position: absolute;
     left: 10%;
     right: 10%;
-    top: 15%;
-    bottom: 15%;
+    top: 5%;
+    bottom: 5%;
     margin: auto;
-    border-radius: 10px;
-    background: rgb(134, 60, 60);
+    border-radius: 5px;
+    background: rgb(6, 0, 61);
 }
 
 .input-text {

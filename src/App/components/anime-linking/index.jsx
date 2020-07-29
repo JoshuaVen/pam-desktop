@@ -10,7 +10,6 @@ import { useInjectReducer } from '../../Utils/injectReducer';
 import { useInjectSaga } from '../../Utils/injectSaga';
 import { local } from '../../services/localFiles';
 import linkSaga from './saga';
-import listSaga from '../../containers/List/saga';
 import { linkReducer, searchReducer } from './reducers';
 import {
   link_init, link_reset, search_req
@@ -77,6 +76,9 @@ const AnimeLinking = () => {
 
   if (!search && !link) return null;
   try {
+    const isLinking = link.linkingStarted
+      ? <Loading /> : <Results search={search} handleLinking={handleLinking} />;
+
     return (
       <div className="popup">
         <div className="popup-inner">
@@ -89,12 +91,7 @@ const AnimeLinking = () => {
               <div className="content">
                 {search.loading
                   ? <Loading />
-                  : (
-                    <Results
-                      search={search}
-                      handleLinking={handleLinking}
-                    />
-                  )}
+                  : isLinking}
               </div>
             )}
         </div>

@@ -6,9 +6,14 @@
 }
 
 .animeImage {
+    margin-top: 10px;
     width: 150px;
     height: 200px;
     align-self: center;
+}
+
+.animeTitle {
+    color: white;
 }
 
 .anime-card {
@@ -33,12 +38,10 @@
 }
 
 .confirmation {
-    height: 250px;
+    height: 100%;
     display: flex;
     flex-direction: row;
-    /* align-content: center; */
     justify-content: center;
-    background-color: rgb(240, 240, 240);
 }
 
 .confirmation .icon {

@@ -15,7 +15,7 @@ import listSaga from './saga';
 import Item from '../../components/item';
 import ExpandableItem from '../../components/expandable-item';
 import './List.css';
-import LoadingComp from '../../components/loading-component/Loading';
+import LoadingComp from '../../components/loading-component';
 
 const AnimeLinking = loadable(() => import('../../components/anime-linking'), { fallback: <LoadingComp /> });
 
@@ -86,7 +86,11 @@ const List = (props) => {
       </div>
     );
   } catch (error) {
-    return (<div>An error occured!</div>);
+    return (
+      <div className="loading-comp">
+        <LoadingComp />
+      </div>
+    );
   }
 };
 

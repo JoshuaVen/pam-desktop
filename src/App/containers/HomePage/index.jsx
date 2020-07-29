@@ -7,7 +7,7 @@ import loadable from '../../Utils/loadable';
 
 import homeReducer from './reducer';
 import Header from '../../components/header';
-import LoadingComp from '../../components/loading-component/Loading';
+import LoadingComp from '../../components/loading-component';
 
 const List = loadable(() => import('../List'), { fallback: <LoadingComp /> });
 

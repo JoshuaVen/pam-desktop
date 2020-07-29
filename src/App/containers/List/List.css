@@ -66,3 +66,13 @@
 .list-main {
     background-color: #271f26;
 }
+
+.loading-comp {
+    background-color: #271f26;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+    height: 300px;
+}

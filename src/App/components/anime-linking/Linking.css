@@ -7,6 +7,7 @@
 
 .downloaded-anime h1 {
     color: rgb(255, 255, 255);
+    text-align: center;
 }
 
 .content {
@@ -16,10 +17,19 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    /* background-color: aqua; */
+}
+
+.content::-webkit-scrollbar-track {
+    background: rgb(6, 0, 61);
+}
+
+.content::-webkit-scrollbar-thumb {
+    background: rgb(0, 255, 13);
 }
 
 .alert-box {
+    display: flex;
+    flex-direction: column;
     border-radius: 5px;
     padding: 20px 0;
     margin: 10px 20px;
@@ -27,11 +37,17 @@
 }
 
 .alert-icon {
+    align-self: center;
     color: #057701;
     width: 60px;
     height: 60px;
 }
 
+.alert-box h2 {
+    text-align: center;
+}
+
 .alert-box p {
+    text-align: center;
     color: black;
 }
