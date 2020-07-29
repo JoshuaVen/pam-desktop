@@ -4,7 +4,7 @@ import { FaCheckCircle } from 'react-icons/fa';
 
 import './Linking.css';
 import '../form/PopupForm.css';
-import Loading from '../../Assets/loading.svg';
+import Loading from '../../Assets/spinner.svg';
 import AnimeCard from '../anime-card/Card';
 import { useInjectReducer } from '../../Utils/injectReducer';
 import { useInjectSaga } from '../../Utils/injectSaga';
@@ -57,7 +57,6 @@ const AnimeLinking = () => {
     if (event.keyCode === 27) {
       dispatch(link_reset());
       dispatch(link_togg());
-      // dispatch(request());
     }
   };
 
