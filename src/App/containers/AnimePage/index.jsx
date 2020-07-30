@@ -11,6 +11,7 @@ import animeReducer from './reducer';
 import animeSaga from './saga';
 import * as anime from './actions';
 import './AnimePage.css';
+import './summary.css';
 
 const Anime = () => {
   useInjectReducer({ key: 'anime', reducer: animeReducer });
@@ -30,34 +31,33 @@ const Anime = () => {
   if (!animeDetails.details) return null;
   const { details } = animeDetails;
   return (
-    <div>
-      <div className="title">
-        <div className="title-jp">
-          <span className="title-span jp">
-            {details.alternative_titles.ja}
-          </span>
-        </div>
-        <div className="title-en">
-          <span className="title-span en">
-            {details.title}
-          </span>
-        </div>
-        <div className="box-genres">
-          {details.genres.map((genre, index) => <span key={index} className="genre-span">{genre.name}</span>)}
-        </div>
-        <div className="details">
-          <div className="summary">
-            <img src={`http://localhost:8080/${details.offline_img}`} alt="Anime Poster" />
-            <div className="year">
-              <p>{details.start_date}</p>
-            </div>
-            <div className="studio">
-              {details.studios.map((studio, index) => <span className="box-studio" key={index}>{studio.name}</span>)}
-            </div>
+    <div className="title">
+      <div className="title-jp">
+        <span className="title-span jp">
+          {details.alternative_titles.ja}
+        </span>
+      </div>
+      <div className="title-en">
+        <span className="title-span en">
+          {details.title}
+        </span>
+      </div>
+      <div className="box-genres">
+        {details.genres.map((genre, index) => <span key={index} className="genre-span">{genre.name}</span>)}
+      </div>
+      <div className="details">
+        <div className="summary">
+          <img src={`http://localhost:8080/${details.offline_img}`} alt="Anime Poster" />
+          <div className="year">
+            <span className="label">First broadcast:</span>
+            <span className="value">{details.start_date}</span>
           </div>
-          <div className="synopsis">
-            <p>{details.synopsis}</p>
+          <div className="studio">
+            {details.studios.map((studio, index) => <span className="box-studio" key={index}>{studio.name}</span>)}
           </div>
+        </div>
+        <div className="synopsis">
+          <p>{details.synopsis}</p>
         </div>
       </div>
     </div>

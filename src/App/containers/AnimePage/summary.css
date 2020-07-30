@@ -1,0 +1,40 @@
+.details .summary {
+  display: flex;
+  flex-direction: column;
+  background-color: aquamarine;
+  margin: 5px 5px;
+}
+
+/* Date information */
+.summary .year {
+  display: flex;
+  flex-direction: row;
+  /* align-content: space-between; */
+  justify-content: center;
+}
+
+.summary .year .label {
+  margin-right: 5px;
+  padding-top: 5px;
+  font-size: 10pt;
+  font-weight: 600;
+}
+
+.summary .year .value {
+  margin-left: 5px;
+  font-size: 13pt;
+  font-weight: bold;
+}
+
+/* Studio information */
+.summary .studio {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.summary .studio .box-studio {
+  margin: 0 10px;
+  font-size: 15pt;
+  font-weight: bold;
+}
