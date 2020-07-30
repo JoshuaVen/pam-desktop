@@ -19,7 +19,7 @@ function App() {
       <Route path="/mal" exact component={Mal} />
       <Route path="/signin" exact component={Signin} />
       <Route path="/signout" exact component={Signout} />
-      <Route path="/" exact component={Home} />
+      <Route path="/main_window" exact component={Home} />
     </div>
   );
 }
